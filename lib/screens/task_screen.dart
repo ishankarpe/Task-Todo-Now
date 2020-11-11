@@ -1,17 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todonow_flutter/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
+  Widget buildBottomSheet(BuildContext context) {
+    return Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.green.shade600,
-          child: Icon(
-            Icons.add,
-            color: Colors.black,
-          )),
+        backgroundColor: Colors.green.shade600,
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: buildBottomSheet);
+        },
+      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -23,7 +32,7 @@ class TasksScreen extends StatelessWidget {
                 CircleAvatar(
                   child: Icon(
                     Icons.list,
-                    size: 40.0,
+                    size: 50.0,
                     color: Colors.green,
                   ),
                   backgroundColor: Colors.white,
@@ -49,6 +58,7 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 color: Colors.white70,
                 borderRadius: BorderRadius.only(
@@ -56,8 +66,9 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
+              child: TasksList(),
             ),
-          )
+          ),
         ],
       ),
     );
