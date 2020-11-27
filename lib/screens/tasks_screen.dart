@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:todonow_flutter/widgets/tasks_list.dart';
 import 'package:todonow_flutter/screens/add_task_screen.dart';
+import 'package:todonow_flutter/models/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Eat Snack'),
+    Task(name: 'Play Games'),
+    Task(name: 'Have Dinner '),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +84,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(tasks),
             ),
           ),
         ],
