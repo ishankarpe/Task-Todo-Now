@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:task_todo_now_flutter/screens/tasks_screen.dart';
 import 'package:provider/provider.dart';
