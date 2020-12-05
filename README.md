@@ -1,3 +1,3 @@
-# Todonow_flutter
+# Task-Todo-Now_flutter
 
-A todo list app
+A Todo List App
