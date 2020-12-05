@@ -1,45 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:todonow_flutter/widgets/tasks_list.dart';
-import 'package:todonow_flutter/screens/add_task_screen.dart';
-import 'package:todonow_flutter/models/task.dart';
+import 'package:task_todo_now_flutter/widgets/tasks_list.dart';
+import 'package:task_todo_now_flutter/screens/add_task_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:task_todo_now_flutter/models/task_data.dart';
 
-class TasksScreen extends StatefulWidget {
-
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Eat Snack'),
-    Task(name: 'Play Games'),
-    Task(name: 'Have Dinner '),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green.shade600,
-        child: Icon(
-          Icons.add,
-          color: Colors.black,
-        ),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (context) => SingleChildScrollView(
-                    child: Container(
+          backgroundColor: Colors.green.shade600,
+          child: Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => SingleChildScrollView(
+                        child: Container(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
                       child: AddTaskScreen(),
-                    ),
-                  ));
-        },
-      ),
+                    )));
+          }),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(
@@ -56,16 +44,19 @@ class _TasksScreenState extends State<TasksScreen> {
                   backgroundColor: Colors.white,
                   radius: 30.0,
                 ),
-                SizedBox(height: 10.0),
-                Text(
-                  'TodoNow',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.w600),
+                SizedBox(
+                  height: 10.0,
                 ),
                 Text(
-                  '8 tasks',
+                  'Task-Todo-Now',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20.0,
@@ -84,7 +75,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           ),
         ],
