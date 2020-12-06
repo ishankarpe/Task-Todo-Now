@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       builder: (context) => TaskData(),
+      create: (BuildContext context) {},
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: TasksScreen(),
