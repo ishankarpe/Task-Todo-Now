@@ -26,7 +26,7 @@ class AddTaskScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
-                color: Colors.green.shade600,
+                color: Colors.indigo,
               ),
             ),
             TextField(
@@ -43,7 +43,7 @@ class AddTaskScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              color: Colors.lightBlueAccent,
+              color: Colors.lightBlue,
               onPressed: () {
                 Provider.of<TaskData>(context).addTask(newTaskTitle);
                 Navigator.pop(context);

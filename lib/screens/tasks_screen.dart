@@ -10,7 +10,7 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blue,
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.green.shade600,
+          backgroundColor: Colors.indigo,
           child: Icon(
             Icons.add,
             color: Colors.black,
@@ -39,7 +39,7 @@ class TasksScreen extends StatelessWidget {
                   child: Icon(
                     Icons.list,
                     size: 50.0,
-                    color: Colors.green,
+                    color: Colors.indigo,
                   ),
                   backgroundColor: Colors.white,
                   radius: 30.0,
