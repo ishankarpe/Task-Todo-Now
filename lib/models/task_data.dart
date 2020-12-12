@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_todo_now_flutter/models/task.dart';
 import 'dart:collection';
 
@@ -14,8 +15,9 @@ class TaskData extends ChangeNotifier {
     return _tasks.length;
   }
 
-  void addTask(String newTaskTitle) {
+  void  addTask(String newTaskTitle) async {
     final task = Task(name: newTaskTitle);
+    final prefs = await SharedPreferences.getInstance();
     _tasks.add(task);
     notifyListeners();
   }
