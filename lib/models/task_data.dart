@@ -4,21 +4,22 @@ import 'package:task_todo_now_flutter/models/task.dart';
 import 'dart:collection';
 
 class TaskData extends ChangeNotifier {
-  List<Task> _tasks = [
-  ];
-
+  List<Task> _tasks=[];
+  List<Task> _spTasks=[];
   UnmodifiableListView<Task> get tasks {
-    return UnmodifiableListView(_tasks);
+    return UnmodifiableListView(_spTasks);
   }
 
   int get taskCount {
-    return _tasks.length;
+    return _spTasks.length??0;
   }
 
-  void  addTask(String newTaskTitle) async {
+  void
+  addTask(String newTaskTitle) async {
     final task = Task(name: newTaskTitle);
-    final prefs = await SharedPreferences.getInstance();
-    _tasks.add(task);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _spTasks= (prefs.getStringList('taskList')??_tasks);
+    _spTasks.add(task);
     notifyListeners();
   }
 
@@ -28,7 +29,7 @@ class TaskData extends ChangeNotifier {
   }
 
   void deleteTask(Task task) {
-    _tasks.remove(task);
+    _spTasks.remove(task);
     notifyListeners();
   }
 }
